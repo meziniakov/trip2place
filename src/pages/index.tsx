@@ -7,7 +7,7 @@ import { Main } from '@/templates/Main'
 const Index = () => {
   const router = useRouter()
 
-  getAllMuseums('3').then((data) => console.log(data))
+  getAllMuseums('4').then((data) => console.log(data))
 
   return (
     <Main
@@ -25,21 +25,26 @@ const Index = () => {
         />
       </a>
       <h2 className="text-2xl font-bold">
-        Boilerplate code for your Nextjs project with Tailwind CSS
+        Boilerplate code for your Nextjs project with
+        Tailwind CSS
       </h2>
       <p>
         <span role="img" aria-label="rocket">
           🚀
         </span>{' '}
-        Next.js Boilerplate is a starter code for your Next js project by
-        putting developer experience first .{' '}
+        Next.js Boilerplate is a starter code for your
+        Next js project by putting developer experience
+        first .{' '}
         <span role="img" aria-label="zap">
           ⚡️
         </span>{' '}
-        Made with Next.js, TypeScript, ESLint, Prettier, Husky, Lint-Staged,
-        VSCode, Netlify, PostCSS, Tailwind CSS.
+        Made with Next.js, TypeScript, ESLint,
+        Prettier, Husky, Lint-Staged, VSCode, Netlify,
+        PostCSS, Tailwind CSS.
       </p>
-      <h3 className="text-lg font-semibold">Next js Boilerplate Features</h3>
+      <h3 className="text-lg font-semibold">
+        Next js Boilerplate Features
+      </h3>
       <p>Developer experience first:</p>
       <ul>
         <li>
@@ -56,7 +61,10 @@ const Index = () => {
             🎨
           </span>{' '}
           Integrate with{' '}
-          <a href="https://tailwindcss.com" rel="nofollow">
+          <a
+            href="https://tailwindcss.com"
+            rel="nofollow"
+          >
             Tailwind CSS
           </a>
         </li>
@@ -82,7 +90,10 @@ const Index = () => {
           </a>
         </li>
         <li>
-          <span role="img" aria-label="hammer_and_wrench">
+          <span
+            role="img"
+            aria-label="hammer_and_wrench"
+          >
             🛠
           </span>{' '}
           Code Formatter with{' '}
@@ -100,20 +111,23 @@ const Index = () => {
           <span role="img" aria-label="no_entry_sign">
             🚫
           </span>{' '}
-          Lint-staged for running linters on Git staged files
+          Lint-staged for running linters on Git staged
+          files
         </li>
         <li>
           <span role="img" aria-label="no_entry_sign">
             🗂
           </span>{' '}
-          VSCode configuration: Debug, Settings, Tasks and extension for
-          PostCSS, ESLint, Prettier, TypeScript
+          VSCode configuration: Debug, Settings, Tasks
+          and extension for PostCSS, ESLint, Prettier,
+          TypeScript
         </li>
         <li>
           <span role="img" aria-label="robot">
             🤖
           </span>{' '}
-          SEO metadata, JSON-LD and Open Graph tags with Next SEO
+          SEO metadata, JSON-LD and Open Graph tags
+          with Next SEO
         </li>
         <li>
           <span role="img" aria-label="robot">
@@ -154,13 +168,18 @@ const Index = () => {
           Live reload
         </li>
         <li>
-          <span role="img" aria-label="white_check_mark">
+          <span
+            role="img"
+            aria-label="white_check_mark"
+          >
             ✅
           </span>{' '}
           Cache busting
         </li>
       </ul>
-      <h3 className="text-lg font-semibold">Our Stater code Philosophy</h3>
+      <h3 className="text-lg font-semibold">
+        Our Stater code Philosophy
+      </h3>
       <ul>
         <li>Minimal code</li>
         <li>SEO-friendly</li>
@@ -172,7 +191,8 @@ const Index = () => {
         </li>
       </ul>
       <p>
-        Check our GitHub project for more information about{' '}
+        Check our GitHub project for more information
+        about{' '}
         <a href="https://github.com/ixartz/Next-js-Boilerplate">
           Nextjs Boilerplate
         </a>
