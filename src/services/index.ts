@@ -1,1 +1,1 @@
-export const API_URL = 'https://opendata.mkrf.ru/v2';
+export const API_URL = 'https://opendata.mkrf.ru/v2'
