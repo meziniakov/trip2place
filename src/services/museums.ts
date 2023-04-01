@@ -17,3 +17,5 @@ export async function getAllMuseums(
 ): Promise<RootDataMuseum[]> {
   return fetcher(`/mincult/museums/$?s=${currentPage}&l=10&o=false`)
 }
+
+export const museum = 'museums'
