@@ -1,4 +1,4 @@
-import type { RootDataMuseum } from '@/types/Museum.type'
+import type { RootObject } from '@/types/Museum.type'
 
 async function fetcher<T>(
   input: RequestInfo | URL,
@@ -12,10 +12,17 @@ async function fetcher<T>(
   }).then((res) => res.json())
 }
 
-export async function getAllMuseums(
-  currentPage: string
-): Promise<RootDataMuseum[]> {
+export async function getAllMuseums(currentPage: string): Promise<RootObject> {
   return fetcher(`/mincult/museums/$?s=${currentPage}&l=10&o=false`)
+}
+
+export async function getMuseumByNativeId(
+  nativeId: string
+): Promise<RootObject> {
+  const rootObject: RootObject = await fetcher(
+    `/mincult/museums/$?f={"nativeId":{"$eq":${nativeId}}}`
+  )
+  return rootObject
 }
 
 export const museum = 'museums'

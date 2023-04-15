@@ -175,6 +175,7 @@ export interface SocialGroups {
   networkId: string
   updateDate: string
   createDate: string
+  isPersonal?: boolean
   accountId: number
   postingGroupId: number
 }
@@ -217,9 +218,9 @@ export interface Value {
   network: string
   name: string
   networkId: string
-  isPersonal: boolean
-  updateDate: string
+  isPersonal?: boolean
   createDate: string
+  updateDate: string
   accountId: number
   postingGroupId: number
 }

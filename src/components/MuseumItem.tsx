@@ -10,7 +10,7 @@ type Props = {
 
 const MuseumItem: FC<Props> = ({ museum }) => {
   return (
-    <Link href={`/rooms/${museum.id}`}>
+    <Link href={`/museums/${museum.id}`}>
       <div className="relative h-60 w-full hover:shadow-lg">
         <Image
           fill={true}

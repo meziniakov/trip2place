@@ -4,6 +4,7 @@ import MuseumItemList from '@/components/MuseumItemList'
 import { Meta } from '@/layouts/Meta'
 import { getAllMuseums } from '@/services/museums'
 import { Main } from '@/templates/Main'
+import type { RootDataMuseum } from '@/types/Museum.type'
 
 const Index = () => {
   const [museums, setMuseums] = useState<RootDataMuseum[]>([])
@@ -41,8 +42,6 @@ const Index = () => {
         .finally(() => setFetching(false))
     }
   }, [fetching])
-
-  console.log(museums)
 
   // getAllMuseums('4').then((data) => console.log(data))
 
