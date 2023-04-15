@@ -4,6 +4,7 @@ import MuseumItemList from '@/components/MuseumItemList'
 import { Meta } from '@/layouts/Meta'
 import { getAllMuseums } from '@/services/museums'
 import { Main } from '@/templates/Main'
+import Container from '@/components/Container'
 import type { RootDataMuseum } from '@/types/Museum.type'
 
 const Index = () => {
@@ -28,20 +29,22 @@ const Index = () => {
     }
   }, [])
 
-  useEffect(() => {
-    if (fetching) {
-      getAllMuseums('4')
-        .then(({ data }) => {
-          console.log(data)
-          setMuseums([...museums, ...data])
-          setCurrentPage((prevState) => prevState + 20)
-        })
-        .catch(() => {
-          throw new Error('Ошибка сервера')
-        })
-        .finally(() => setFetching(false))
-    }
-  }, [fetching])
+  // useEffect(() => {
+  //   if (fetching) {
+  //     getAllMuseums('4')
+  //       .then(({ data }) => {
+  //         console.log(data)
+  //         setMuseums([...museums, ...data])
+  //         setCurrentPage((prevState) => prevState + 20)
+  //       })
+  //       .catch(() => {
+  //         throw new Error('Ошибка сервера')
+  //       })
+  //       .finally(() => setFetching(false))
+  //   }
+  // }, [fetching])
+
+  // console.log(museums)
 
   // getAllMuseums('4').then((data) => console.log(data))
 
@@ -54,7 +57,8 @@ const Index = () => {
         />
       }
     >
-      <MuseumItemList museums={museums} />
+        Test
+        {/* <MuseumItemList museums={museums} /> */}
     </Main>
   )
 }

@@ -9,7 +9,6 @@
 } */
 
 @tailwind components;
-
 @tailwind utilities;
 
 .content p {
@@ -18,4 +17,9 @@
 
 .content ul {
   @apply my-6;
+}
+
+html,
+body {
+  height: 100%;
 }
