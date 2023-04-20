@@ -55,6 +55,7 @@ __mocks__
 cypress
 qqrenta.ru.code-workspace
 
+.vscode
 .env
 ./package-lock.json
 
