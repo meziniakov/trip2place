@@ -5,14 +5,14 @@ const Search = () => {
   return (
     <div
       onClick={searchModal.onOpen}
-      className="border-[1px] md:w-auto rounded-full py-2 shadow-sm hover:shadow-md transition cursor-pointer"
+      className="cursor-pointer rounded-full border-[1px] py-2 shadow-sm transition hover:shadow-md md:w-auto"
     >
       <div className="flex flex-row items-center justify-between">
-        <div className="text-sm font-semibold px-6">Поиск</div>
-        <div className="hidden sm:block text-sm font-semibold border-x-[1px] px-6 flex-1 text-center">
+        <div className="px-6 text-sm font-semibold">Поиск</div>
+        <div className="hidden flex-1 border-x-[1px] px-6 text-center text-sm font-semibold sm:block">
           Город
         </div>
-        <div className="hidden md:block text-sm font-semibold border-x-[1px] pl-6 pr-2 flex flex-row gap-3 items-center">
+        <div className="hidden flex-row items-center gap-3 border-x-[1px] pl-6 pr-2 text-sm font-semibold md:block">
           <div className="hidden sm:block">Категория</div>
         </div>
       </div>

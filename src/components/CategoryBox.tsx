@@ -1,23 +1,30 @@
-import { IconType } from 'react-icons'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useCallback } from 'react'
 import qs from 'query-string'
+import { useCallback } from 'react'
+import type { IconType } from 'react-icons'
 
 interface CategoryBoxProps {
   icon: IconType
   label: string
+  value: string
   selected?: boolean
 }
 
 const CategoryBox: React.FC<CategoryBoxProps> = ({
   icon: Icon,
   label,
+  value,
   selected,
 }) => {
   const router = useRouter()
   const params = useSearchParams()
 
   const handleClick = useCallback(() => {
+    if (value === 'enjoy') {
+      router.push(`/${value}`)
+      return
+    }
+
     let currentQuery = {}
 
     if (params) {
@@ -26,10 +33,10 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
 
     const updateQuery: any = {
       ...currentQuery,
-      category: label,
+      category: value,
     }
 
-    if (params?.get('category') === label) {
+    if (params?.get('category') === value) {
       delete updateQuery.category
     }
 
@@ -49,22 +56,22 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
       onClick={handleClick}
       className={`
         flex 
+        cursor-pointer 
         flex-col 
-        justify-center 
         items-center
+        justify-center
         gap-2
         border-b-2
         p-3
-        hover:text-neutral-800
-        hover:border-b-neutral-800
         transition
-        cursor-pointer
+        hover:border-b-neutral-800
+        hover:text-neutral-800
         ${selected ? 'border-b-neutral-800' : 'border-transparent'}
         ${selected ? 'text-neutral-800' : 'text-neutral-500'}
     `}
     >
       <Icon size={26} />
-      <div className="font-medium text-sm">{label}</div>
+      <div className="text-sm font-medium">{label}</div>
     </div>
   )
 }

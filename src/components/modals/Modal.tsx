@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useState } from 'react'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { IoMdClose } from 'react-icons/io'
+
 import Button from '../Button'
 
-import { IoMdClose } from 'react-icons/io'
 interface ModalProps {
   isOpen?: boolean
   onClose: () => void
@@ -10,7 +12,7 @@ interface ModalProps {
   body?: React.ReactElement
   footer?: React.ReactElement
   actionLabel?: string
-  disabled: boolean
+  disabled?: boolean
   secondaryAction?: () => void
   secondaryLabel?: string
 }
@@ -64,88 +66,86 @@ const Modal: React.FC<ModalProps> = ({
   return (
     <div
       className="
+    fixed
+    inset-0
+    z-50
     flex
     items-center
     justify-center
-    fixed
-    overflow-x-hidden
     overflow-y-auto
+    overflow-x-hidden
+    bg-neutral-800/60
     outline-none
-    focus:outline-none
-    z-50
-    inset-0
-    bg-neutral-800/60"
+    focus:outline-none"
     >
       <div
         className="
         relative
+        mx-auto
+        my-6
+        h-full
         w-full
+        md:h-auto
         md:w-4/6
+        lg:h-auto
         lg:w-3/6
         xl:w-2/5
-        my-6
-        mx-auto
-        h-full
-        md:h-auto
-        lg:h-auto
         "
       >
         <div
           className={`
-            translate
-            duration-300
             h-full
+            duration-300
             ${showModal ? 'translate-y-0' : 'translate-y-full'}
             ${showModal ? 'opacity-100' : 'opacity-0'}
          `}
         >
           <div
             className="
-             translate
-             h-full
-             outline-none
-             focus:outline-none
-             bg-white
-             w-full
+             relative
              flex
+             h-full
+             w-full
              flex-col
              rounded-lg
-             shadow-lg
-             relative
              border-0
-             lg:h-auto
+             bg-white
+             shadow-lg
+             outline-none
+             focus:outline-none
              md:h-auto
+             lg:h-auto
              "
           >
             <div
               className="
+                 relative
                  flex
                  items-center
-                 p-6
+                 justify-center
                  rounded-t
                  border-b-[1px]
-                 justify-center
-                 relative
+                 p-6
                  "
             >
               <button
                 onClick={handleClose}
                 className="
-                    p-1
-                    border-0
-                    hover:opacity-70
-                    transition
                     absolute
                     left-9
+                    border-0
+                    p-1
+                    transition
+                    hover:opacity-70
                 "
               >
                 <IoMdClose size={18} />
               </button>
-              <div className="font-semibold text-lg">{title}</div>
+              <div className="text-lg font-semibold">{title}</div>
             </div>
-            <div className="relative p-6 flex-auto">{body}</div>
+            <div className="relative flex-auto p-6">{body}</div>
             <div className="flex flex-col gap-2 p-6">
-              <div className="flex flex-row w-full items-center gap-4">
+              <div className="flex w-full flex-row items-center gap-4">
                 {secondaryAction && secondaryLabel && (
                   <Button
                     outline
@@ -154,11 +154,13 @@ const Modal: React.FC<ModalProps> = ({
                     label={secondaryLabel}
                   />
                 )}
-                <Button
-                  disabled={disabled}
-                  onClick={handleSubmit}
-                  label={actionLabel}
-                />
+                {actionLabel && (
+                  <Button
+                    disabled={disabled}
+                    onClick={handleSubmit}
+                    label={actionLabel}
+                  />
+                )}
               </div>
               {footer}
             </div>

@@ -152,7 +152,9 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
                           <PhoneIcon className="h-4" />{' '}
                         </Link>
                       </div>
-                      <div className="">{museum.contacts.phones[0]?.value}</div>
+                      <div className="">
+                        {museum.contacts.phones[0]?.value}
+                      </div>
                     </div>
                   </div>
                   <div className="flex flex-col text-sm">
@@ -195,7 +197,8 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
                                   </Link>
                                 </div>
                                 <div>
-                                  {social.network === 'ok' ?? 'Одноклассники'}
+                                  {social.network === 'ok' ??
+                                    'Одноклассники'}
                                 </div>
                               </>
                             )}
@@ -334,7 +337,9 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
           )}
           {museum.address?.mapPosition?.coordinates && (
             <div className="flex flex-col py-5">
-              <h3 className="mb-3 text-xl font-extrabold">Местоположение</h3>
+              <h3 className="mb-3 text-xl font-extrabold">
+                Местоположение
+              </h3>
               <div className="flex h-96 w-full">
                 <MapSingle museum={museum} />
               </div>

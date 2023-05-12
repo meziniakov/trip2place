@@ -12,17 +12,25 @@ async function fetcher<T>(
   }).then((res) => res.json())
 }
 
-export async function getAllMuseums(currentPage: string): Promise<RootObject> {
-  return fetcher(`/mincult/museums/$?s=${currentPage}&l=10&o=false`)
+export async function getAllPlaces(
+  currentPage: number,
+  category: string = 'museums',
+  // locale: string | undefined = undefined,
+  limit: string = '10',
+  offset: string = 'false'
+): Promise<RootObject> {
+  // const f = locale ?? JSON.stringify('data.general.locale.name': $search: `${locale}` })
+  return fetcher(
+    `/mincult/${category}/$?s=${currentPage}&l=${limit}&o=${offset}`
+  )
 }
 
-export async function getMuseumByNativeId(
+export async function getPlaceByNativeId(
+  category: string,
   nativeId: string
 ): Promise<RootObject> {
   const rootObject: RootObject = await fetcher(
-    `/mincult/museums/$?f={"nativeId":{"$eq":${nativeId}}}`
+    `/mincult/${category}/$?f={"nativeId":{"$eq":${nativeId}}}`
   )
   return rootObject
 }
-
-export const museum = 'museums'

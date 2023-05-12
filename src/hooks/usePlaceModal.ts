@@ -7,9 +7,9 @@ interface ModalProps {
   onClose: () => void
 }
 
-const useSearchModal = create<ModalProps>((set) => ({
+const usePlaceModal = create<ModalProps>((set) => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }))
-export default useSearchModal
+export default usePlaceModal

@@ -1,10 +1,12 @@
-import img from './logo.png'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+
+import img from './logo.png'
+
 const Logo = () => {
   const router = useRouter()
   return (
-    <div className="flex flex-row justify-start items-center">
+    <div className="flex flex-row items-center justify-start">
       <Image
         onClick={() => router.push('/')}
         src={img.src}
@@ -13,7 +15,7 @@ const Logo = () => {
         height="50"
         className="cursor-pointer"
       />
-      <span className="font-extrabold text-2xl">Trip2place</span>
+      <span className="text-2xl font-extrabold">Trip2place</span>
     </div>
   )
 }

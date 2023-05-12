@@ -19,7 +19,7 @@
   @apply my-6;
 }
 
-html,
+html,#__next,
 body {
   height: 100%;
 }

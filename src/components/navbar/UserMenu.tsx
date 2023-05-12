@@ -1,11 +1,15 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import { useCallback, useRef, useState } from 'react'
 import { AiOutlineMenu } from 'react-icons/ai'
+
+import usePlaceModal from '@/hooks/usePlaceModal'
+
+import useOnClickOutside from '../../hooks/useOnClickOutside'
 import Avatar from './Avatar'
 import MenuItem from './MenuItem'
-import useOnClickOutside from '../../hooks/useOnClickOutside'
-import { useState, useCallback, useRef } from 'react'
 
 const UserMenu = () => {
-  const ref = useRef()
+  const ref = useRef<HTMLDivElement>(null)
   const [isOpen, setIsOpen] = useState(false)
 
   const toogleOpen = useCallback(() => {
@@ -13,30 +17,34 @@ const UserMenu = () => {
   }, [])
 
   useOnClickOutside(ref, () => setIsOpen(false))
+  const placeModal = usePlaceModal()
 
   return (
     <div className="relative">
       <div className="flex flex-row items-center gap-3">
-        <div className="hidden rounded-full hover:bg-neutral-100 transition cursor-pointer  md:block py-3 px-4 text-sm font-semibold">
+        <div
+          onClick={placeModal.onOpen}
+          className="hidden cursor-pointer rounded-full px-4 py-3  text-sm font-semibold transition hover:bg-neutral-100 md:block"
+        >
           Airbnb home
         </div>
         <div
           onClick={toogleOpen}
           ref={ref}
           className="
-        p-4
-        md:py-1
-        md:px-2
-        border-[1px]
-        border-neutral-200
         flex
+        cursor-pointer
         flex-row
         items-center
         gap-3
-        cursor-pointer
-        hover:shadow-md
-        transition
         rounded-full
+        border-[1px]
+        border-neutral-200
+        p-4
+        transition
+        hover:shadow-md
+        md:px-2
+        md:py-1
         "
         >
           <AiOutlineMenu />
@@ -49,18 +57,18 @@ const UserMenu = () => {
         <div
           className="
             absolute
-            rounded-xl
-            shadow-md
-            w-[40vw]
-            md:w-3/4
-            bg-white
-            overflow-hidden
             right-0
             top-12
+            w-[40vw]
+            overflow-hidden
+            rounded-xl
+            bg-white
             text-sm
+            shadow-md
+            md:w-3/4
           "
         >
-          <div className="flex flex-col cursor-pointer">
+          <div className="flex cursor-pointer flex-col">
             <MenuItem onClick={() => {}} label="Войти" />
             <MenuItem onClick={() => {}} label="Регистрация" />
           </div>

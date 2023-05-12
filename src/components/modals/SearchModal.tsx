@@ -1,12 +1,13 @@
-import Modal from '@/components/modals/Modal'
-import useSearchModal from '@/hooks/useSearchModal'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useState, useCallback, useMemo } from 'react'
-import { Range } from 'react-date-range'
-import qs from 'query-string'
 import { formatISO } from 'date-fns'
+import { useRouter, useSearchParams } from 'next/navigation'
+import qs from 'query-string'
+import { useCallback, useMemo, useState } from 'react'
+import type { Range } from 'react-date-range'
+
 import Heading from '@/components/Heading'
 import Calendar from '@/components/inputs/Calendar'
+import Modal from '@/components/modals/Modal'
+import useSearchModal from '@/hooks/useSearchModal'
 
 enum STEPS {
   LOCATION = 0,
@@ -20,7 +21,7 @@ const SearchModal = () => {
   const searchModal = useSearchModal()
 
   const [step, setStep] = useState(STEPS.LOCATION)
-  const [roomCount, setRoomCount] = useState(1)
+  const [roomCount] = useState(1)
   const [dateRange, setDateRange] = useState<Range>({
     startDate: new Date(),
     endDate: new Date(),
@@ -39,6 +40,7 @@ const SearchModal = () => {
     setStep((value) => value + 1)
   }, [])
 
+  // eslint-disable-next-line consistent-return
   const onSubmit = useCallback(async () => {
     if (step !== STEPS.INFO) {
       return onNext()
@@ -54,11 +56,11 @@ const SearchModal = () => {
       roomCount,
     }
 
-    if (dateRange.startDate) {
-      updateQuery.startDate = formatISO(dateRange.startDate)
+    if (dateRange?.startDate) {
+      updateQuery.startDate = formatISO(dateRange?.startDate)
     }
-    if (dateRange.endDate) {
-      updateQuery.endDate = formatISO(dateRange.endDate)
+    if (dateRange?.endDate) {
+      updateQuery.endDate = formatISO(dateRange?.endDate)
     }
     const url = qs.stringifyUrl(
       {
@@ -67,8 +69,6 @@ const SearchModal = () => {
       },
       { skipNull: true }
     )
-
-    console.log(step)
 
     setStep(STEPS.LOCATION)
     searchModal.onClose()
@@ -107,7 +107,7 @@ const SearchModal = () => {
         />
         <Calendar
           value={dateRange}
-          onChange={(value) => setDateRange(value.selection)}
+          onChange={(value) => setDateRange(value?.selection)}
         />
       </div>
     )

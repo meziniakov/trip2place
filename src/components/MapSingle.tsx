@@ -25,7 +25,8 @@ const MapSingle: FC<Props> = ({ museum }) => {
           center: coords,
           zoom: 9,
         }}
-        className="h-full w-full"
+        width={'100%'}
+        height={'300px'}
       >
         <Placemark
           key={museum.id}

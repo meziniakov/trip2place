@@ -1,5 +1,6 @@
-import avatar from './placeholder_avatar.jpeg'
 import Image from 'next/image'
+
+import avatar from './placeholder_avatar.jpeg'
 
 const Avatar = () => {
   return (
