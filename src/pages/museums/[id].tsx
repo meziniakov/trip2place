@@ -49,7 +49,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-const MuseumPage = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+const MuseumPage = (
+  props: InferGetStaticPropsType<typeof getStaticProps>
+) => {
   return (
     <Main
       meta={

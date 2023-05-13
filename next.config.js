@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
-});
+})
 
 module.exports = withBundleAnalyzer({
   eslint: {
@@ -10,7 +10,7 @@ module.exports = withBundleAnalyzer({
   poweredByHeader: false,
   trailingSlash: true,
   images: {
-    domains: ["all.culture.ru"],
+    domains: ["all.culture.ru", "res.cloudinary.com", "a0.muscache.com"],
   },
   basePath: "",
   // The starter code load resources from `public` folder with `router.basePath` in React components.
@@ -23,6 +23,6 @@ module.exports = withBundleAnalyzer({
         source: "/mincult/:path*",
         destination: `${process.env.NEXT_PUBLIC_API_MINCULT_URL}/:path*`,
       },
-    ];
+    ]
   },
-});
+})
