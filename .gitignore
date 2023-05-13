@@ -56,6 +56,8 @@ cypress
 qqrenta.ru.code-workspace
 
 .vscode
+.vscode/settings.json
+vscode
 .env
 ./package-lock.json
 
