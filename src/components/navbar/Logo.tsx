@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import img from './logo.png'
@@ -15,7 +16,9 @@ const Logo = () => {
         height="50"
         className="cursor-pointer"
       />
-      <span className="text-2xl font-extrabold">Trip2place</span>
+      <Link href={'/'}>
+        <span className="text-2xl font-extrabold">Trip2place</span>
+      </Link>
     </div>
   )
 }

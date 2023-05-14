@@ -21,12 +21,12 @@ const UserMenu = () => {
 
   return (
     <div className="relative">
-      <div className="flex flex-row items-center gap-3">
+      <div className="z-10 flex flex-row items-center gap-3">
         <div
           onClick={placeModal.onOpen}
-          className="hidden cursor-pointer rounded-full px-4 py-3  text-sm font-semibold transition hover:bg-neutral-100 md:block"
+          className="hidden cursor-pointer rounded-full px-4 py-3 text-sm font-semibold transition hover:bg-neutral-100 md:block"
         >
-          Airbnb home
+          Добавить объект
         </div>
         <div
           onClick={toogleOpen}
@@ -59,6 +59,7 @@ const UserMenu = () => {
             absolute
             right-0
             top-12
+            z-40
             w-[40vw]
             overflow-hidden
             rounded-xl
@@ -68,7 +69,7 @@ const UserMenu = () => {
             md:w-3/4
           "
         >
-          <div className="flex cursor-pointer flex-col">
+          <div className="relative z-30 flex cursor-pointer flex-col">
             <MenuItem onClick={() => {}} label="Войти" />
             <MenuItem onClick={() => {}} label="Регистрация" />
           </div>

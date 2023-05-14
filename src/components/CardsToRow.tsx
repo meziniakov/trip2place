@@ -27,7 +27,7 @@ const CardsToRow: FC<CardsToRowProps> = ({ listings }) => {
   }
 
   return (
-    <div className="mx-auto flex h-full w-full max-w-[2520px] flex-nowrap gap-4 overflow-auto px-4 pt-24 sm:px-2 md:px-10 xl:px-20">
+    <div className="mx-auto flex h-full w-full max-w-[2520px] flex-nowrap gap-4 overflow-auto px-4 pt-6 sm:px-2 md:px-10 xl:px-20">
       {listings?.map((item) => (
         <div key={item.id} className="">
           <Link href={`/stories/${item.id}`}>

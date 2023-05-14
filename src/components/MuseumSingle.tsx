@@ -20,7 +20,7 @@ type Props = {
 
 const MuseumSingle: FC<Props> = ({ museum }) => {
   return (
-    <div className="px-6 lg:px-28 2xl:px-32">
+    <div className="px-6 pt-6 lg:px-28 2xl:px-32">
       <div className="w-full justify-center">
         <div className="mb-24 flex max-w-[1280px] flex-col space-y-2">
           <div className="flex">

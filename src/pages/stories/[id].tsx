@@ -2,31 +2,13 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'stories-react/dist/index.css'
 
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Stories from 'stories-react'
 import useSWR from 'swr'
 
 import type { Listing } from '@/types/Listing.type'
-
-// import type { Listing } from '.prisma/client'
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   return {
-//     paths: [...Array(10)].map((_, index) => ({
-//       params: { id: `${index}` },
-//     })),
-//     fallback: false,
-//   }
-// }
-
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-//   return {
-//     props: {
-//       id: params!.id,
-//     },
-//   }
-// }
 
 export const fetcher = (req: any) => fetch(req).then((res) => res.json())
 
@@ -74,7 +56,11 @@ const StoryId = () => {
         ),
         header: (
           <div className="flex h-full justify-center">
-            <div className="absolute bottom-5">{item.description}</div>
+            <Link href={'/enjoy'}>
+              <div className="absolute right-[2px] top-0 z-10 cursor-pointer text-white">
+                X
+              </div>
+            </Link>
           </div>
         ),
       })

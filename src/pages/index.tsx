@@ -88,7 +88,7 @@ const Index = () => {
         />
       }
     >
-      <div className="fixed z-10 w-full bg-white shadow-sm">
+      <div className="sticky top-[83px] z-10 w-full bg-white shadow-sm">
         <Categories />
       </div>
       <Container>

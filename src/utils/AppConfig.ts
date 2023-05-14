@@ -1,9 +1,10 @@
 // FIXME: Update this configuration file based on your project information
 
 export const AppConfig = {
-  site_name: 'Starter',
-  title: 'Nextjs Starter',
+  site_name: 'Trip2place',
+  title:
+    'Цирки, музеи, парки и еще много культурных и красивых мест России',
   description:
-    'Starter code for your Nextjs Boilerplate with Tailwind CSS',
-  locale: 'en',
+    'Цирки, музеи, парки и еще много культурных и красивых мест России',
+  locale: 'ru',
 }

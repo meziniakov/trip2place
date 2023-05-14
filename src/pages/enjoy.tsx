@@ -37,6 +37,16 @@ const Enjoy = () => {
     return (
       <Main meta={<Meta title="Впечатления" description="Впечатления" />}>
         <Container>
+          <div className="flex h-full items-center justify-center">
+            <div className="items-center">Загрузка...</div>
+          </div>
+        </Container>
+      </Main>
+    )
+  if (!data)
+    return (
+      <Main meta={<Meta title="Впечатления" description="Впечатления" />}>
+        <Container>
           <EmptyState />
         </Container>
       </Main>

@@ -1,17 +1,17 @@
 const Footer = () => {
   return (
-    <footer className="bg-white dark:bg-gray-900">
+    <footer className="bg-white">
       <div className="container mx-auto px-6 py-8">
-        <hr className="my-6 border-gray-200 dark:border-gray-700 md:my-10" />
+        <hr className="my-6 border-gray-200 md:my-10" />
         <div className="flex flex-col items-center sm:flex-row sm:justify-between">
-          <p className="text-sm text-gray-500 dark:text-gray-300">
+          <p className="text-sm text-gray-500">
             © Copyright 2023. Сделано с ❤️
           </p>
 
           <div className="-mx-2 flex">
             <a
               href="#"
-              className="mx-2 text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+              className="mx-2 text-gray-600 transition-colors duration-300 hover:text-blue-500"
               aria-label="Reddit"
             >
               <svg
@@ -26,7 +26,7 @@ const Footer = () => {
 
             <a
               href="#"
-              className="mx-2 text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+              className="mx-2 text-gray-600 transition-colors duration-300 hover:text-blue-500"
               aria-label="Facebook"
             >
               <svg
@@ -41,7 +41,7 @@ const Footer = () => {
 
             <a
               href="#"
-              className="mx-2 text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
+              className="mx-2 text-gray-600 transition-colors duration-300 hover:text-blue-500"
               aria-label="Github"
             >
               <svg
