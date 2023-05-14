@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Container from '@/components/Container'
 import EmptyState from '@/components/EmptyState'
 import MuseumItemList from '@/components/MuseumItemList'
+import Categories from '@/components/navbar/Categories'
 import { Meta } from '@/layouts/Meta'
 import { getAllPlaces } from '@/services/museums'
 import { Main } from '@/templates/Main'
@@ -87,6 +88,9 @@ const Index = () => {
         />
       }
     >
+      <div className="fixed z-10 w-full bg-white shadow-sm">
+        <Categories />
+      </div>
       <Container>
         <MuseumItemList museums={museums} />
       </Container>

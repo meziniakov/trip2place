@@ -6,7 +6,6 @@ import {
   MapPinIcon,
   PhoneIcon,
 } from '@heroicons/react/24/outline'
-import { Button, Input, Spacer } from '@nextui-org/react'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
@@ -21,7 +20,7 @@ type Props = {
 
 const MuseumSingle: FC<Props> = ({ museum }) => {
   return (
-    <div className="mt-3 px-6 lg:px-28 2xl:px-32">
+    <div className="px-6 lg:px-28 2xl:px-32">
       <div className="w-full justify-center">
         <div className="mb-24 flex max-w-[1280px] flex-col space-y-2">
           <div className="flex">
@@ -135,9 +134,6 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
                 <div
                   dangerouslySetInnerHTML={{ __html: museum.description }}
                 ></div>
-                {<Button>Click me</Button>}
-                <Spacer />
-                <Input clearable labelPlaceholder="Type something" />
               </div>
               {/* <hr className="my-8 h-px border-[0.5px] bg-gray-200" /> */}
             </div>
@@ -148,33 +144,33 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
                     <div className="text-sm">Телефон:</div>
                     <div className="flex items-center">
                       <div className="mr-2">
-                        <Link href={museum.contacts.website}>
-                          <PhoneIcon className="h-4" />{' '}
-                        </Link>
+                        <PhoneIcon className="h-4" />
                       </div>
                       <div className="">
                         {museum.contacts.phones[0]?.value}
                       </div>
                     </div>
                   </div>
-                  <div className="flex flex-col text-sm">
-                    <div className="text-sm">Адрес сайта:</div>
-                    <div className="flex items-center">
-                      <div className="mr-2">
-                        <Link href={museum.contacts.website}>
-                          <GlobeAltIcon className="h-4" />{' '}
-                        </Link>
-                      </div>
-                      <div className="">
-                        {new URL(museum.contacts.website).hostname}
+                  {museum.contacts?.website && (
+                    <div className="flex flex-col text-sm">
+                      <div className="text-sm">Адрес сайта:</div>
+                      <div className="flex items-center">
+                        <div className="mr-2">
+                          <Link href={museum.contacts.website}>
+                            <GlobeAltIcon className="h-4" />{' '}
+                          </Link>
+                        </div>
+                        <div className="">
+                          {new URL(museum.contacts.website).hostname}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="flex flex-col text-sm">
-                    <div className="text-sm">Соцсети:</div>
-                    <div className="flex flex-col">
-                      {museum?.organization?.socialGroups &&
-                        museum.organization.socialGroups.map((social) => (
+                  )}
+                  {museum?.organization?.socialGroups && (
+                    <div className="flex flex-col text-sm">
+                      <div className="text-sm">Соцсети:</div>
+                      <div className="flex flex-col">
+                        {museum.organization.socialGroups.map((social) => (
                           <div
                             key={social.networkId}
                             className="mr-2 flex items-center"
@@ -225,8 +221,9 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
                             )}
                           </div>
                         ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
                 {/* <span className="mb-3 mr-2 inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
                   {' '}
@@ -320,7 +317,7 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
               <hr className="my-8 h-px border-[0.5px] bg-gray-200" />
             </>
           )} */}
-          {museum.tags.length > 0 && (
+          {museum.tags && museum.tags?.length > 0 && (
             <div className="flex flex-col py-5">
               <h3 className="mb-3 text-xl font-extrabold">Теги</h3>
               <div className="flex flex-wrap items-end justify-start space-x-2 space-y-2">

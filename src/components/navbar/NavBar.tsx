@@ -1,5 +1,3 @@
-import Categories from '@/components/navbar/Categories'
-
 import Container from '../Container'
 import Logo from './Logo'
 import Search from './Search'
@@ -17,7 +15,7 @@ const NavBar = () => {
           </div>
         </Container>
       </div>
-      <Categories />
+      {/* <Categories /> */}
     </div>
   )
 }

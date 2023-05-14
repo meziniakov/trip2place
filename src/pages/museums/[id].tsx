@@ -19,7 +19,7 @@ export const fetcher = (req: string) =>
 export const getStaticPaths: GetStaticPaths = async () => {
   // const museums: RootObject = await getAllMuseums('1')
   const museums: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/museums/$?s=1&l=10&o=false'
+    'https://opendata.mkrf.ru/v2/museums/$'
   )
 
   const paths = museums.data.map((museum) => ({
