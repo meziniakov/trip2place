@@ -1,4 +1,4 @@
-import type { RootObject } from '@/types/Museum.type'
+import type { RootObject } from '@/types/MKRF.type'
 
 async function fetcher<T>(
   input: RequestInfo | URL,
