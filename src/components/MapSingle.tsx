@@ -2,14 +2,14 @@
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps'
 import type { FC } from 'react'
 
-import type { Museum } from '@/types/Museum.type'
+import type { GeneralData } from '@/types/MKRF.type'
 
 type Props = {
-  museum: Museum
+  data: GeneralData
 }
 
-const MapSingle: FC<Props> = ({ museum }) => {
-  const coordinates = museum?.address?.mapPosition?.coordinates
+const MapSingle: FC<Props> = ({ data }) => {
+  const coordinates = data?.address?.mapPosition?.coordinates
   let coords: number[] = []
   if (coordinates.length > 0) {
     coords = [
@@ -29,7 +29,7 @@ const MapSingle: FC<Props> = ({ museum }) => {
         height={'300px'}
       >
         <Placemark
-          key={museum.id}
+          key={data.id}
           modules={['geoObject.addon.balloon']}
           defaultGeometry={coords}
           properties={{
@@ -37,8 +37,8 @@ const MapSingle: FC<Props> = ({ museum }) => {
             preset: 'islands#grayStretchyIcon',
             balloonContentBody: `<div class="flex flex-col">
 <div class="text-lg font-semibold leading-7"></div>
-<div class="">${museum.name}</div>
-<div class=""><img src=${museum.image.url} class="h-32" /></div>
+<div class="">${data.name}</div>
+<div class=""><img src=${data.image.url} class="h-32" /></div>
 </div>`,
           }}
         />

@@ -12,18 +12,6 @@ export const fetcher = (req: string) =>
     },
   }).then((res) => res.json())
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  // const museums: RootObject = await getAllMuseums('1')
-  const museums: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/museums/$'
-  )
-
-  const paths = museums.data.map((museum) => ({
-    params: { id: museum.nativeId.toString() },
-  }))
-  return { paths, fallback: 'blocking' }
-}
-
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   if (!params?.id) {
     return {
@@ -32,16 +20,28 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  const museum: RootObject = await fetcher(
-    `https://opendata.mkrf.ru/v2/museums/$?f={"nativeId":{"$eq":${params?.id?.toString()}}}`
+  const libraries: RootObject = await fetcher(
+    `https://opendata.mkrf.ru/v2/libraries/$?f={"nativeId":{"$eq":${params?.id?.toString()}}}`
   )
 
   return {
     props: {
       id: params?.id,
-      data: museum.data[0]?.data.general,
+      data: libraries.data[0]?.data.general,
     },
   }
+}
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // const libraries: RootObject = await getAllMuseums('1')
+  const libraries: RootObject = await fetcher(
+    'https://opendata.mkrf.ru/v2/libraries/$'
+  )
+
+  const paths = libraries.data.map((museum) => ({
+    params: { id: museum.nativeId.toString() },
+  }))
+  return { paths, fallback: 'blocking' }
 }
 
 interface SinglePageProps {

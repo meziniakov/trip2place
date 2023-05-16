@@ -7,7 +7,7 @@ export interface RootObject {
   o: boolean
   s: number
   l: number
-  data: RootDataMuseum[]
+  data: RootData[]
   count: number
 }
 
@@ -19,11 +19,11 @@ export interface OdSetVersions {
   $in: string[]
 }
 
-export interface RootDataMuseum {
+export interface RootData {
   _id: string
   nativeId: string
   hash: string
-  data: DataMuseum
+  data: Data
   status: number
   nativeName: string
   activated: string
@@ -37,9 +37,9 @@ export interface RootDataMuseum {
   changes: Changes[]
 }
 
-export interface DataMuseum {
+export interface Data {
   info: Info
-  general: Museum
+  general: GeneralData
 }
 
 export interface Info {
@@ -49,7 +49,7 @@ export interface Info {
   updateDate: string
 }
 
-export interface Museum {
+export interface GeneralData {
   id: number
   name: string
   description: string
@@ -58,16 +58,22 @@ export interface Museum {
   category: Category
   contacts: Contacts
   externalInfo: ExternalInfo[]
-  externalIds: ExternalIds
-  extraFields: ExtraFields
+  externalIds?: ExternalIds
+  extraFields?: ExtraFields
   gallery: Gallery[]
   image: Image
   localeIds: number[]
   locale: Locale
   organization: Organization
-  recommendations: Recommendations[]
-  tags: Tags[]
-  workingSchedule: WorkingSchedule
+  recommendations?: Recommendations[]
+  tags?: Tags[]
+  workingSchedule?: WorkingSchedule
+  videoHostings?: VideoHosting[]
+}
+
+export interface VideoHosting {
+  hosting: string
+  id: string
 }
 
 export interface Address {

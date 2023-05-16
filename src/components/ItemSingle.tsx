@@ -10,27 +10,27 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
 
-import type { Museum } from '@/types/Museum.type'
+import type { GeneralData } from '@/types/MKRF.type'
 
 import MapSingle from './MapSingle'
 
 type Props = {
-  museum: Museum
+  data: GeneralData
 }
 
-const MuseumSingle: FC<Props> = ({ museum }) => {
+const ItemSingle: FC<Props> = ({ data }) => {
   return (
     <div className="px-6 pt-6 lg:px-28 2xl:px-32">
       <div className="w-full justify-center">
         <div className="mb-24 flex max-w-[1280px] flex-col space-y-2">
           <div className="flex">
-            <h1 className="text-2xl font-extrabold">{museum.name}</h1>
+            <h1 className="text-2xl font-extrabold">{data.name}</h1>
           </div>
           <div className="flex justify-between">
             <div className="flex items-center">
               <StarIcon className="h-4 text-red-600" />
               {''} ∙ {'нет отзывов'}∙ <MapPinIcon className="h-4" />{' '}
-              {museum?.address.fullAddress}
+              {data?.address.fullAddress}
             </div>
             <div className="flex">
               <div className="mr-3 flex items-center">
@@ -47,39 +47,39 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
               </div>
             </div>
           </div>
-          {museum?.gallery?.length > 0 ? (
+          {data?.gallery?.length > 0 ? (
             <section className="overflow-hidden text-neutral-700">
               <div className="container mx-auto p-1">
                 <div className="flex flex-wrap">
                   <div className="flex w-2/3 flex-wrap">
                     <div className="h-96 w-full p-0.5 md:p-0.5">
                       <Image
-                        src={museum.image.url}
-                        alt={museum.name}
+                        src={data.image.url}
+                        alt={data.name}
                         width={580}
                         height={300}
                         className="block h-full w-full rounded-l-lg object-cover object-center"
                       />
                     </div>
                   </div>
-                  {museum.gallery.length > 1 && (
+                  {data.gallery.length > 1 && (
                     <div className="flex h-96 w-1/3 flex-wrap">
                       <div className="h-1/2 w-full p-0.5">
                         <Image
-                          alt={museum?.gallery[0]?.title || museum.name}
+                          alt={data?.gallery[0]?.title || data.name}
                           width={250}
                           height={190}
                           className="block h-full w-full rounded-tr-lg object-cover object-center"
-                          src={museum?.gallery[0]?.url || ''}
+                          src={data?.gallery[0]?.url || ''}
                         />
                       </div>
                       <div className="h-1/2 w-full p-0.5">
                         <Image
-                          alt={museum?.gallery[1]?.title || museum.name}
+                          alt={data?.gallery[1]?.title || data.name}
                           width={250}
                           height={190}
                           className="block h-full w-full rounded-br-lg object-cover object-center"
-                          src={museum.gallery[1]?.url || ''}
+                          src={data.gallery[1]?.url || ''}
                         />
                       </div>
                     </div>
@@ -94,8 +94,8 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
                   <div className="flex w-full flex-wrap">
                     <div className="h-96 w-full p-0.5 md:p-0.5">
                       <Image
-                        src={museum.image.url}
-                        alt={museum.name}
+                        src={data.image.url}
+                        alt={data.name}
                         width={580}
                         height={300}
                         className="block h-full w-full rounded-lg object-cover object-center"
@@ -112,27 +112,27 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
                 <div className="">
                   <div className="">
                     <h3 className="text-xl font-extrabold">
-                      {museum.organization?.name}
+                      {data.organization?.name}
                     </h3>
                   </div>
                   <div className="flex items-center">
                     <MapPinIcon className="h-4" />
-                    {museum.organization.address.fullAddress}
+                    {data.organization.address.fullAddress}
                   </div>
                 </div>
                 <div className="">
-                  {/* {museum.organization?.name} */}
+                  {/* {data.organization?.name} */}
                   {/* <img
                     className="h-14 rounded-full"
-                    alt={museum.organization?.name}
-                    src={museum.organization.subordi}
+                    alt={data.organization?.name}
+                    src={data.organization.subordi}
                   /> */}
                 </div>
               </div>
               <hr className="my-8 h-px border-[0.5px] bg-gray-200" />
               <div className="whitespace-pre-line">
                 <div
-                  dangerouslySetInnerHTML={{ __html: museum.description }}
+                  dangerouslySetInnerHTML={{ __html: data.description }}
                 ></div>
               </div>
               {/* <hr className="my-8 h-px border-[0.5px] bg-gray-200" /> */}
@@ -147,30 +147,30 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
                         <PhoneIcon className="h-4" />
                       </div>
                       <div className="">
-                        {museum.contacts.phones[0]?.value}
+                        {data.contacts.phones[0]?.value}
                       </div>
                     </div>
                   </div>
-                  {museum.contacts?.website && (
+                  {data.contacts?.website && (
                     <div className="flex flex-col text-sm">
                       <div className="text-sm">Адрес сайта:</div>
                       <div className="flex items-center">
                         <div className="mr-2">
-                          <Link href={museum.contacts.website}>
+                          <Link href={data.contacts.website}>
                             <GlobeAltIcon className="h-4" />{' '}
                           </Link>
                         </div>
                         <div className="">
-                          {new URL(museum.contacts.website).hostname}
+                          {new URL(data.contacts.website).hostname}
                         </div>
                       </div>
                     </div>
                   )}
-                  {museum?.organization?.socialGroups && (
+                  {data?.organization?.socialGroups && (
                     <div className="flex flex-col text-sm">
                       <div className="text-sm">Соцсети:</div>
                       <div className="flex flex-col">
-                        {museum.organization.socialGroups.map((social) => (
+                        {data.organization.socialGroups.map((social) => (
                           <div
                             key={social.networkId}
                             className="mr-2 flex items-center"
@@ -261,7 +261,7 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
                     type="button"
                     className="mt-3 w-full rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
                   >
-                    {museum?.contacts?.phones[0]?.value}
+                    {data?.contacts?.phones[0]?.value}
                   </button>
                 </div>
               </div>
@@ -317,11 +317,11 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
               <hr className="my-8 h-px border-[0.5px] bg-gray-200" />
             </>
           )} */}
-          {museum.tags && museum.tags?.length > 0 && (
+          {data.tags && data.tags?.length > 0 && (
             <div className="flex flex-col py-5">
               <h3 className="mb-3 text-xl font-extrabold">Теги</h3>
               <div className="flex flex-wrap items-end justify-start space-x-2 space-y-2">
-                {museum.tags.map((tag) => (
+                {data.tags.map((tag) => (
                   <span
                     key={tag.id}
                     className=" inline-block whitespace-nowrap rounded-[0.27rem] bg-orange-100 px-[0.65em] pb-[0.25em] pt-[0.35em] text-center align-baseline text-[0.75em] font-bold leading-none"
@@ -332,13 +332,13 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
               </div>
             </div>
           )}
-          {museum.address?.mapPosition?.coordinates && (
+          {data.address?.mapPosition?.coordinates && (
             <div className="flex flex-col py-5">
               <h3 className="mb-3 text-xl font-extrabold">
                 Местоположение
               </h3>
               <div className="flex h-96 w-full">
-                <MapSingle museum={museum} />
+                <MapSingle data={data} />
               </div>
             </div>
           )}
@@ -347,4 +347,4 @@ const MuseumSingle: FC<Props> = ({ museum }) => {
     </div>
   )
 }
-export default MuseumSingle
+export default ItemSingle
