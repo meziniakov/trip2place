@@ -1,4 +1,4 @@
-import { formatISO } from 'date-fns'
+// import { formatISO } from 'date-fns'
 import { useRouter, useSearchParams } from 'next/navigation'
 import qs from 'query-string'
 import { useCallback, useMemo, useState } from 'react'
@@ -12,7 +12,7 @@ import useSearchModal from '@/hooks/useSearchModal'
 enum STEPS {
   LOCATION = 0,
   DATE = 1,
-  INFO = 2,
+  // INFO = 2,
 }
 
 const SearchModal = () => {
@@ -21,7 +21,7 @@ const SearchModal = () => {
   const searchModal = useSearchModal()
 
   const [step, setStep] = useState(STEPS.LOCATION)
-  const [roomCount] = useState(1)
+  const [location, setLocation] = useState('Москва')
   const [dateRange, setDateRange] = useState<Range>({
     startDate: new Date(),
     endDate: new Date(),
@@ -42,7 +42,7 @@ const SearchModal = () => {
 
   // eslint-disable-next-line consistent-return
   const onSubmit = useCallback(async () => {
-    if (step !== STEPS.INFO) {
+    if (step !== STEPS.LOCATION) {
       return onNext()
     }
     let currentQuery = {}
@@ -53,15 +53,15 @@ const SearchModal = () => {
 
     const updateQuery: any = {
       ...currentQuery,
-      roomCount,
+      location,
     }
 
-    if (dateRange?.startDate) {
-      updateQuery.startDate = formatISO(dateRange?.startDate)
-    }
-    if (dateRange?.endDate) {
-      updateQuery.endDate = formatISO(dateRange?.endDate)
-    }
+    // if (dateRange?.startDate) {
+    //   updateQuery.startDate = formatISO(dateRange?.startDate)
+    // }
+    // if (dateRange?.endDate) {
+    //   updateQuery.endDate = formatISO(dateRange?.endDate)
+    // }
     const url = qs.stringifyUrl(
       {
         url: '/',
@@ -73,10 +73,10 @@ const SearchModal = () => {
     setStep(STEPS.LOCATION)
     searchModal.onClose()
     router.push(url)
-  }, [step, searchModal, dateRange, roomCount, params, onNext, router])
+  }, [step, searchModal, dateRange, location, params, onNext, router])
 
   const actionLabel = useMemo(() => {
-    if (step === STEPS.INFO) {
+    if (step === STEPS.LOCATION) {
       return 'Поиск'
     }
     return 'Далее'
@@ -93,8 +93,30 @@ const SearchModal = () => {
     <div className="flex flex-col gap-8">
       <Heading
         title="Выберите город"
-        subtitle="В каком городе вас интересуют "
+        subtitle="Введите вручную или выберите из списка"
       />
+      <div className="flex flex-col">
+        <input
+          type="text"
+          value={location}
+          onChange={(e) => setLocation(e.target.value)}
+          placeholder="Москва"
+          className={`
+        desabled:opacity-70
+        peer
+        flex
+        w-full rounded-md
+        border-2
+        bg-white
+        p-4
+        pt-6
+        font-light
+        outline-none
+        transition
+        disabled:cursor-not-allowed
+        `}
+        />
+      </div>
     </div>
   )
 
@@ -113,16 +135,16 @@ const SearchModal = () => {
     )
   }
 
-  if (step === STEPS.INFO) {
-    bodyContent = (
-      <div className="flex flex-col gap-8">
-        <Heading
-          title="Мало фильтров?"
-          subtitle="Что бы вы еще хотели выбрать?"
-        />
-      </div>
-    )
-  }
+  // if (step === STEPS.INFO) {
+  //   bodyContent = (
+  //     <div className="flex flex-col gap-8">
+  //       <Heading
+  //         title="Мало фильтров?"
+  //         subtitle="Что бы вы еще хотели выбрать?"
+  //       />
+  //     </div>
+  //   )
+  // }
 
   return (
     <Modal

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 import type { Listing } from '@/types/Listing.type'
 
@@ -11,7 +11,13 @@ interface CardsToRowProps {
   listings: Listing[] | undefined
 }
 
+function cn(...classes: string[]) {
+  return classes.filter(Boolean).join(' ')
+}
+
 const CardsToRow: FC<CardsToRowProps> = ({ listings }) => {
+  const [isLoading, setLoading] = useState(true)
+
   const videoRef = useRef(null)
 
   const onFocus = (e: any) => {
@@ -33,7 +39,11 @@ const CardsToRow: FC<CardsToRowProps> = ({ listings }) => {
           <Link href={`/stories/${item.id}`}>
             <div className="group h-full w-40 cursor-pointer">
               <div className="flex h-full w-full flex-col gap-1">
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl">
+                <div
+                  className={`${
+                    isLoading && 'animate-pulse'
+                  } relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-gray-200`}
+                >
                   {item.medias?.map((media) =>
                     media.type === 'video' ? (
                       <video
@@ -48,9 +58,16 @@ const CardsToRow: FC<CardsToRowProps> = ({ listings }) => {
                       <Image
                         key={media.id}
                         fill
-                        className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                        src={media.src}
-                        alt="Listing"
+                        src={media.src || ''}
+                        alt={item.title}
+                        style={{ transform: 'translate3d(0, 0, 0)' }}
+                        className={cn(
+                          'group-hover:opacity-75 duration-700 ease-in-out rounded-lg object-cover brightness-90 transition group-hover:brightness-110',
+                          isLoading
+                            ? 'grayscale blur-2xl scale-110'
+                            : 'grayscale-0 blur-0 scale-100'
+                        )}
+                        onLoadingComplete={() => setLoading(false)}
                       />
                     )
                   )}

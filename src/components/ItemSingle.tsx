@@ -58,7 +58,11 @@ const ItemSingle: FC<Props> = ({ data }) => {
               <div className="container mx-auto p-1">
                 <div className="flex flex-wrap">
                   <div className="flex w-2/3 flex-wrap">
-                    <div className="relative h-96 w-full overflow-hidden rounded-lg bg-gray-200 p-0.5">
+                    <div
+                      className={`${
+                        isLoading && 'animate-pulse'
+                      } relative h-96 w-full overflow-hidden rounded-lg bg-gray-200 p-0.5`}
+                    >
                       <Image
                         src={data?.image?.url || ''}
                         alt={data?.name || ''}
@@ -77,7 +81,11 @@ const ItemSingle: FC<Props> = ({ data }) => {
                   </div>
                   {data?.gallery?.length > 1 && (
                     <div className="flex h-96 w-1/3 flex-wrap">
-                      <div className="h-1/2 w-full rounded-tr-lg bg-gray-200 p-0.5">
+                      <div
+                        className={`${
+                          isLoading && 'animate-pulse'
+                        } h-1/2 w-full rounded-tr-lg bg-gray-200 p-0.5`}
+                      >
                         <Image
                           src={data?.gallery[0]?.url || ''}
                           alt={data?.gallery[0]?.title || data?.name}
@@ -93,7 +101,11 @@ const ItemSingle: FC<Props> = ({ data }) => {
                           onLoadingComplete={() => setLoading(false)}
                         />
                       </div>
-                      <div className="h-1/2 w-full rounded-br-lg bg-gray-200 p-0.5">
+                      <div
+                        className={`${
+                          isLoading && 'animate-pulse'
+                        } h-1/2 w-full rounded-br-lg bg-gray-200 p-0.5`}
+                      >
                         <Image
                           src={data?.gallery[1]?.url || ''}
                           alt={data?.gallery[1]?.title || data?.name}

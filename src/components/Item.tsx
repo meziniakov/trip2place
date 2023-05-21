@@ -18,7 +18,11 @@ const Item: FC<Props> = ({ item, category }) => {
   const [isLoading, setLoading] = useState(true)
   return (
     <Link href={`/${category}/${item?.id}`}>
-      <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-gray-200 hover:shadow-lg">
+      <div
+        className={`${
+          isLoading && 'animate-pulse'
+        } relative aspect-square w-full overflow-hidden rounded-lg bg-gray-400 hover:shadow-lg`}
+      >
         <Image
           fill={true}
           src={item?.image?.url || ''}

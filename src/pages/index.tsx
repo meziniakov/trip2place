@@ -13,7 +13,8 @@ import type { RootData } from '@/types/MKRF.type'
 const Index = () => {
   const params = useSearchParams()
   const categoryParams = params.get('category') || 'museums'
-  const localeParams = params.get('locale') || undefined
+  const localeParams = params.get('location') || 'Москва'
+  // let currentPage = params.get('page') || 0
 
   const [data, setData] = useState<RootData[]>([])
   const [fetching, setFetching] = useState(true)
@@ -36,11 +37,31 @@ const Index = () => {
     }
   }, [])
 
+  // let currentQuery = {}
+
+  // if (params) {
+  //   currentQuery = queryString.parse(params.toString())
+  // }
+
   useEffect(() => {
     if (fetching) {
       getAllPlaces(currentPage, categoryParams, localeParams)
         .then((fetchData) => {
           setData([...data, ...fetchData.data])
+
+          // const updateQuery: any = {
+          //   ...currentQuery,
+          //   page: +currentPage + 20,
+          // }
+          // const url = queryString.stringifyUrl(
+          //   {
+          //     url: '/',
+          //     query: updateQuery,
+          //   },
+          //   { skipNull: true }
+          // )
+
+          // router.push(url, undefined, { shallow: true })
           setCurrentPage((prevState) => prevState + 20)
         })
         .catch(() => {
@@ -48,11 +69,11 @@ const Index = () => {
         })
         .finally(() => setFetching(false))
     }
-  }, [fetching, categoryParams])
+  }, [fetching, categoryParams, localeParams])
 
   useEffect(() => {
-    if (categoryParams) {
-      getAllPlaces(currentPage, categoryParams)
+    if (categoryParams || localeParams) {
+      getAllPlaces(0, categoryParams, localeParams)
         .then((fetchData) => {
           setData([...fetchData.data])
         })
@@ -60,9 +81,13 @@ const Index = () => {
           throw new Error('Ошибка сервера')
         })
     }
-  }, [categoryParams])
+  }, [categoryParams, localeParams])
 
-  const emptyState = false
+  let emptyState = false
+
+  if (data.length === 0) {
+    emptyState = true
+  }
 
   if (emptyState) {
     return (
@@ -74,6 +99,10 @@ const Index = () => {
           />
         }
       >
+        <div className="sticky top-[83px] z-10 w-full bg-white shadow-sm">
+          <Categories />
+        </div>
+
         <EmptyState showReset />
       </Main>
     )

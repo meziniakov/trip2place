@@ -1,7 +1,11 @@
+import { useSearchParams } from 'next/navigation'
+
 import useSearchModal from '@/hooks/useSearchModal'
 
 const Search = () => {
   const searchModal = useSearchModal()
+  const params = useSearchParams()
+  const location = params.get('location')
   return (
     <div
       onClick={searchModal.onOpen}
@@ -10,7 +14,7 @@ const Search = () => {
       <div className="flex flex-row items-center justify-between">
         <div className="px-6 text-sm font-semibold">Поиск</div>
         <div className="hidden flex-1 border-x-[1px] px-6 text-center text-sm font-semibold sm:block">
-          Город
+          {location || 'Город'}
         </div>
         <div className="hidden flex-row items-center gap-3 border-x-[1px] pl-6 pr-2 text-sm font-semibold md:block">
           <div className="hidden sm:block">Категория</div>

@@ -13,15 +13,17 @@ async function fetcher<T>(
 }
 
 export async function getAllPlaces(
-  currentPage: number,
+  currentPage: any,
   category: string = 'museums',
-  // locale: string | undefined = undefined,
+  locale: string | undefined = undefined,
   limit: string = '10',
   offset: string = 'false'
 ): Promise<RootObject> {
-  // const f = locale ?? JSON.stringify('data.general.locale.name': $search: `${locale}` })
+  const f =
+    locale ??
+    JSON.stringify(`'data.general.locale.name': $search: ${locale}`)
   return fetcher(
-    `/mincult/${category}/$?s=${currentPage}&l=${limit}&o=${offset}`
+    `/mincult/${category}/$?f=${f}&s=${currentPage}&l=${limit}&o=${offset}`
   )
 }
 
