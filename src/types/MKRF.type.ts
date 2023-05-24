@@ -147,7 +147,7 @@ export interface Organization {
   subordinationIds: number[]
   subordination: Subordination
   localeIds: number[]
-  locale: Locale2
+  locale: Locale
   socialGroups: SocialGroups[]
 }
 
@@ -162,13 +162,6 @@ export interface Address2 {
 }
 
 export interface Subordination {
-  name: string
-  timezone: string
-  sysName: string
-  id: number
-}
-
-export interface Locale2 {
   name: string
   timezone: string
   sysName: string
@@ -229,4 +222,72 @@ export interface Value {
   updateDate: string
   accountId: number
   postingGroupId: number
+}
+
+export interface GeneralDataEvent {
+  id: number
+  name: string
+  shortDescription?: string
+  description: string
+  ageRestriction: number
+  isFree: boolean
+  price?: number
+  status: string
+  start: string
+  end: string
+  tags: Tags[]
+  image: Image
+  gallery: Gallery[]
+  recommendations: Recommendations[]
+  category: CategoryEvent
+  organization: OrganizationEvent
+  places: Places[]
+  seances: Seances[]
+}
+
+export interface CategoryEvent {
+  type: string
+  name: string
+  sysName: string
+  id: number
+}
+
+export interface OrganizationEvent {
+  id: number
+  name: string
+  type: string
+  subordinationIds: number[]
+  subordination: Subordination
+  localeIds: undefined[]
+  locale: Locale
+}
+
+export interface Places {
+  address: AddressPlace
+  externalInfo: undefined[]
+  gallery: undefined[]
+  localeIds: number[]
+  locale: Locale
+  recommendations: undefined[]
+  seances: Seances[]
+  tags: undefined[]
+  videoHostings: undefined[]
+  ticketReport: undefined[]
+}
+
+export interface AddressPlace {
+  street: string
+  comment: string
+  fiasHouseId: string
+  fiasStreetId: string
+  fiasSettlementId: string
+  fiasAreaId: string
+  fiasRegionId: string
+  fullAddress: string
+  mapPosition: MapPosition
+}
+
+export interface Seances {
+  start: string
+  end: string
 }

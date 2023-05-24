@@ -21,7 +21,7 @@ const Main = (props: IMainProps) => (
     <PlaceModal />
     <SearchModal />
     <NavBar />
-    <div className="pb-20 pt-[83px]">{props.children}</div>
+    <div className="pt-[83px]">{props.children}</div>
     {/* <Footer /> */}
 
     <footer className="border-t border-gray-300 py-8 text-center text-sm">

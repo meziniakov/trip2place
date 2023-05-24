@@ -2,7 +2,6 @@
 import { useSearchParams } from 'next/navigation'
 import {
   GiFilmProjector,
-  GiGuitar,
   GiPanFlute,
   GiTheaterCurtains,
 } from 'react-icons/gi'
@@ -20,43 +19,38 @@ export const categories = [
   },
   {
     label: 'Музеи',
-    value: 'museums',
+    value: 'muzei-i-galerei',
     icon: MdMuseum,
   },
   {
     label: 'Парки',
-    value: 'parks',
+    value: 'parki',
     icon: MdAttractions,
   },
   {
     label: 'Библиотеки',
-    value: 'libraries',
+    value: 'biblioteki',
     icon: MdLocalLibrary,
   },
   {
     label: 'Кинотеатры',
-    value: 'cinema',
+    value: 'kinoteatry',
     icon: GiFilmProjector,
   },
   {
     label: 'Театры',
-    value: 'theaters',
+    value: 'teatry',
     icon: GiTheaterCurtains,
   },
   {
     label: 'Цирки',
-    value: 'circuses',
+    value: 'cirki',
     icon: TbBuildingCircus,
   },
   {
-    label: 'Филармонии',
-    value: 'philharmonic',
+    label: 'Конц. залы',
+    value: 'koncertnye-ploshchadki',
     icon: GiPanFlute,
-  },
-  {
-    label: 'Концертные залы',
-    value: 'concert_halls',
-    icon: GiGuitar,
   },
 ]
 

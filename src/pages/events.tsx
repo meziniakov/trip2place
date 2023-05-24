@@ -3,14 +3,14 @@ import { useEffect, useState } from 'react'
 
 import Container from '@/components/Container'
 import EmptyState from '@/components/EmptyState'
-import ItemList from '@/components/ItemList'
+import ItemListEvent from '@/components/ItemListEvent'
 import Categories from '@/components/navbar/Categories'
 import { Meta } from '@/layouts/Meta'
-import { getAllPlaces } from '@/services/museums'
+import { getAllEvents } from '@/services/museums'
 import { Main } from '@/templates/Main'
 import type { RootData } from '@/types/MKRF.type'
 
-const Index = () => {
+const Events = () => {
   const params = useSearchParams()
   const categoryParams = params.get('category') || 'museums'
   const localeParams = params.get('location') || 'Москва'
@@ -45,7 +45,7 @@ const Index = () => {
 
   useEffect(() => {
     if (fetching) {
-      getAllPlaces(currentPage, categoryParams, localeParams)
+      getAllEvents(currentPage, categoryParams, localeParams)
         .then((fetchData) => {
           setData([...data, ...fetchData.data])
 
@@ -73,7 +73,7 @@ const Index = () => {
 
   useEffect(() => {
     if (categoryParams || localeParams) {
-      getAllPlaces(0, categoryParams, localeParams)
+      getAllEvents(0, categoryParams, localeParams)
         .then((fetchData) => {
           setData([...fetchData.data])
         })
@@ -118,13 +118,13 @@ const Index = () => {
       }
     >
       <div className="sticky top-[83px] z-10 w-full bg-white shadow-sm">
-        <Categories />
+        {/* <Categories /> */}
       </div>
       <Container>
-        <ItemList items={data} />
+        <ItemListEvent items={data} />
       </Container>
     </Main>
   )
 }
 
-export default Index
+export default Events

@@ -26,14 +26,14 @@ function cn(...classes: string[]) {
 const ItemSingle: FC<Props> = ({ data }) => {
   const [isLoading, setLoading] = useState(true)
   return (
-    <div className="px-6 pt-6 lg:px-28 2xl:px-32">
+    <div className="px-2 pt-6 lg:px-28 2xl:px-56">
       <div className="w-full justify-center">
-        <div className="mb-24 flex max-w-[1280px] flex-col space-y-2">
+        <div className="flex max-w-[1280px] flex-col space-y-2">
           <div className="flex">
             <h1 className="text-2xl font-extrabold">{data?.name}</h1>
           </div>
-          <div className="flex justify-between">
-            <div className="flex items-center">
+          <div className="flex justify-end md:justify-between">
+            <div className="hidden items-center md:flex">
               <StarIcon className="h-4 text-red-600" />
               {''} ∙ {'нет отзывов'}∙ <MapPinIcon className="h-4" />{' '}
               {data?.address?.fullAddress}
@@ -43,25 +43,25 @@ const ItemSingle: FC<Props> = ({ data }) => {
                 <span className="mr-2">
                   <HeartIcon className="h-4" />
                 </span>
-                Сохранить
+                <span className="hidden sm:block">Сохранить</span>
               </div>
               <div className="flex items-center">
                 <span className="mr-2">
                   <ArrowUpTrayIcon className=" h-4" />
                 </span>
-                Поделиться
+                <span className="hidden sm:block">Поделиться</span>
               </div>
             </div>
           </div>
-          {data?.gallery && data?.gallery?.length > 0 ? (
+          {data?.gallery && data?.gallery?.length > 2 ? (
             <section className="overflow-hidden text-neutral-700">
               <div className="container mx-auto p-1">
                 <div className="flex flex-wrap">
-                  <div className="flex w-2/3 flex-wrap">
+                  <div className="flex w-2/3 flex-wrap pr-2">
                     <div
                       className={`${
                         isLoading && 'animate-pulse'
-                      } relative h-96 w-full overflow-hidden rounded-lg bg-gray-200 p-0.5`}
+                      } relative h-96 w-full overflow-hidden rounded-l-lg bg-gray-200`}
                     >
                       <Image
                         src={data?.image?.url || ''}
@@ -84,7 +84,7 @@ const ItemSingle: FC<Props> = ({ data }) => {
                       <div
                         className={`${
                           isLoading && 'animate-pulse'
-                        } h-1/2 w-full rounded-tr-lg bg-gray-200 p-0.5`}
+                        } h-1/2 w-full rounded-tr-lg bg-gray-200`}
                       >
                         <Image
                           src={data?.gallery[0]?.url || ''}
@@ -101,25 +101,27 @@ const ItemSingle: FC<Props> = ({ data }) => {
                           onLoadingComplete={() => setLoading(false)}
                         />
                       </div>
-                      <div
-                        className={`${
-                          isLoading && 'animate-pulse'
-                        } h-1/2 w-full rounded-br-lg bg-gray-200 p-0.5`}
-                      >
-                        <Image
-                          src={data?.gallery[1]?.url || ''}
-                          alt={data?.gallery[1]?.title || data?.name}
-                          width={250}
-                          height={190}
-                          style={{ transform: 'translate3d(0, 0, 0)' }}
-                          className={cn(
-                            'group-hover:opacity-75 h-full w-full duration-700 ease-in-out rounded-br-lg object-cover object-center brightness-90 transition',
-                            isLoading
-                              ? 'grayscale blur-2xl scale-110'
-                              : 'grayscale-0 blur-0 scale-100'
-                          )}
-                          onLoadingComplete={() => setLoading(false)}
-                        />
+                      <div className="h-1/2 w-full pt-2">
+                        <div
+                          className={`${
+                            isLoading && 'animate-pulse'
+                          } h-full w-full rounded-br-lg bg-gray-200`}
+                        >
+                          <Image
+                            src={data?.gallery[1]?.url || ''}
+                            alt={data?.gallery[1]?.title || data?.name}
+                            width={250}
+                            height={190}
+                            style={{ transform: 'translate3d(0, 0, 0)' }}
+                            className={cn(
+                              'group-hover:opacity-75 h-full w-full duration-700 ease-in-out rounded-br-lg object-cover object-center brightness-90 transition',
+                              isLoading
+                                ? 'grayscale blur-2xl scale-110'
+                                : 'grayscale-0 blur-0 scale-100'
+                            )}
+                            onLoadingComplete={() => setLoading(false)}
+                          />
+                        </div>
                       </div>
                     </div>
                   )}
@@ -170,11 +172,9 @@ const ItemSingle: FC<Props> = ({ data }) => {
                   </div>
                 </div>
                 <hr className="my-8 h-px border-[0.5px] bg-gray-200" />
-                <div className="whitespace-pre-line">
-                  <div
-                    dangerouslySetInnerHTML={{ __html: data?.description }}
-                  ></div>
-                </div>
+                <div
+                  dangerouslySetInnerHTML={{ __html: data?.description }}
+                ></div>
                 {/* <hr className="my-8 h-px border-[0.5px] bg-gray-200" /> */}
               </div>
             )}
@@ -190,7 +190,11 @@ const ItemSingle: FC<Props> = ({ data }) => {
                             <PhoneIcon className="h-4" />
                           </div>
                           <div className="">
-                            {data?.contacts?.phones[0]?.value}
+                            <a
+                              href={`tel:+${data?.contacts?.phones[0]?.value}`}
+                            >
+                              +{data?.contacts?.phones[0]?.value}
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -200,12 +204,12 @@ const ItemSingle: FC<Props> = ({ data }) => {
                         <div className="text-sm">Адрес сайта:</div>
                         <div className="flex items-center">
                           <div className="mr-2">
-                            <Link href={data?.contacts?.website}>
-                              <GlobeAltIcon className="h-4" />{' '}
-                            </Link>
+                            <GlobeAltIcon className="h-4" />{' '}
                           </div>
                           <div className="">
-                            {new URL(data?.contacts?.website).hostname}
+                            <Link href={data?.contacts?.website}>
+                              {new URL(data?.contacts?.website).hostname}
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -305,17 +309,22 @@ const ItemSingle: FC<Props> = ({ data }) => {
                 </div> */}
                   {data?.contacts?.phones[0]?.value && (
                     <div className="flex">
-                      <button
-                        type="button"
-                        className="mt-3 w-full rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300"
+                      <a
+                        href={`tel:+${data?.contacts?.phones[0]?.value}`}
+                        className="mt-3 flex w-full items-center justify-center rounded-lg bg-amber-300 px-5 py-2.5 text-base font-medium text-black hover:bg-amber-200 focus:outline-none focus:ring-4 focus:ring-blue-300"
                       >
-                        {data?.contacts?.phones[0]?.value}
-                      </button>
+                        <span className="mr-2">
+                          <PhoneIcon className="h-4" />
+                        </span>
+                        <span className="flex">
+                          +{data?.contacts?.phones[0]?.value}
+                        </span>
+                      </a>
                     </div>
                   )}
                 </div>
                 <div className="z-0 flex text-sm">
-                  Источник -{' '}
+                  Источник - &nbsp;
                   <a
                     href="http://culture.ru"
                     target="_blank"

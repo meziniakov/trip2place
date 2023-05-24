@@ -27,6 +27,21 @@ export async function getAllPlaces(
   )
 }
 
+export async function getAllEvents(
+  currentPage: any,
+  // category: string,
+  locale: string | undefined = undefined,
+  limit: string = '10',
+  offset: string = 'false'
+): Promise<RootObject> {
+  const f =
+    locale ??
+    JSON.stringify(`'data.general.locale.name': $search: ${locale}`)
+  return fetcher(
+    `/mincult/events/$?f=${f}&s=${currentPage}&l=${limit}&o=${offset}`
+  )
+}
+
 export async function getPlaceByNativeId(
   category: string,
   nativeId: string

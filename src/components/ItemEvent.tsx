@@ -3,17 +3,17 @@ import Link from 'next/link'
 import type { FC } from 'react'
 import { useState } from 'react'
 
-import type { GeneralData } from '@/types/MKRF.type'
+import type { GeneralDataEvent } from '@/types/MKRF.type'
 
 type Props = {
-  item: GeneralData
+  item: GeneralDataEvent
 }
 
 function cn(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-const Item: FC<Props> = ({ item }) => {
+const ItemEvent: FC<Props> = ({ item }) => {
   const [isLoading, setLoading] = useState(true)
   return (
     <Link href={`/${item.category.sysName}/${item?.id}`}>
@@ -39,7 +39,7 @@ const Item: FC<Props> = ({ item }) => {
       <div className="pt-2">
         <div className="">
           <p className="font-bold text-gray-900">
-            {item?.category?.name}, {item?.locale?.name}
+            {item?.category?.name}, {item?.places[0]?.locale.name}
           </p>
         </div>
         <div className="">
@@ -47,11 +47,15 @@ const Item: FC<Props> = ({ item }) => {
         </div>
         <div className="flex justify-between">
           <div>
-            <p className="text-[16px]">{item?.organization?.name}</p>
+            {item.isFree ? (
+              <p className="text-[16px] font-bold">Бесплатно</p>
+            ) : (
+              <p className="text-[16px] font-bold">₽{item?.price}</p>
+            )}
           </div>
         </div>
       </div>
     </Link>
   )
 }
-export default Item
+export default ItemEvent
