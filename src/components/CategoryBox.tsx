@@ -25,6 +25,11 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
       return
     }
 
+    if (value === 'events') {
+      router.push(`/${value}`)
+      return
+    }
+
     let currentQuery = {}
 
     if (params) {

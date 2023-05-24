@@ -5,7 +5,12 @@ import {
   GiPanFlute,
   GiTheaterCurtains,
 } from 'react-icons/gi'
-import { MdAttractions, MdLocalLibrary, MdMuseum } from 'react-icons/md'
+import {
+  MdAttractions,
+  MdLocalActivity,
+  MdLocalLibrary,
+  MdMuseum,
+} from 'react-icons/md'
 import { TbBrandInstagram, TbBuildingCircus } from 'react-icons/tb'
 
 import CategoryBox from '@/components/CategoryBox'
@@ -18,38 +23,43 @@ export const categories = [
     icon: TbBrandInstagram,
   },
   {
+    label: 'События',
+    value: 'events',
+    icon: MdLocalActivity,
+  },
+  {
     label: 'Музеи',
-    value: 'muzei-i-galerei',
+    value: 'muzeums',
     icon: MdMuseum,
   },
   {
     label: 'Парки',
-    value: 'parki',
+    value: 'parks',
     icon: MdAttractions,
   },
   {
     label: 'Библиотеки',
-    value: 'biblioteki',
+    value: 'libraries',
     icon: MdLocalLibrary,
   },
   {
     label: 'Кинотеатры',
-    value: 'kinoteatry',
+    value: 'cinema',
     icon: GiFilmProjector,
   },
   {
     label: 'Театры',
-    value: 'teatry',
+    value: 'theaters',
     icon: GiTheaterCurtains,
   },
   {
     label: 'Цирки',
-    value: 'cirki',
+    value: 'circuses',
     icon: TbBuildingCircus,
   },
   {
     label: 'Конц. залы',
-    value: 'koncertnye-ploshchadki',
+    value: 'concert_halls',
     icon: GiPanFlute,
   },
 ]

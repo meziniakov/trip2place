@@ -12,7 +12,6 @@ import type { RootData } from '@/types/MKRF.type'
 
 const Events = () => {
   const params = useSearchParams()
-  const categoryParams = params.get('category') || 'museums'
   const localeParams = params.get('location') || 'Москва'
   // let currentPage = params.get('page') || 0
 
@@ -45,7 +44,7 @@ const Events = () => {
 
   useEffect(() => {
     if (fetching) {
-      getAllEvents(currentPage, categoryParams, localeParams)
+      getAllEvents(currentPage, localeParams)
         .then((fetchData) => {
           setData([...data, ...fetchData.data])
 
@@ -69,11 +68,11 @@ const Events = () => {
         })
         .finally(() => setFetching(false))
     }
-  }, [fetching, categoryParams, localeParams])
+  }, [fetching, localeParams])
 
   useEffect(() => {
-    if (categoryParams || localeParams) {
-      getAllEvents(0, categoryParams, localeParams)
+    if (localeParams) {
+      getAllEvents(0, localeParams)
         .then((fetchData) => {
           setData([...fetchData.data])
         })
@@ -81,7 +80,7 @@ const Events = () => {
           throw new Error('Ошибка сервера')
         })
     }
-  }, [categoryParams, localeParams])
+  }, [localeParams])
 
   let emptyState = false
 
