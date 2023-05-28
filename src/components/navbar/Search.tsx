@@ -5,7 +5,7 @@ import useSearchModal from '@/hooks/useSearchModal'
 const Search = () => {
   const searchModal = useSearchModal()
   const params = useSearchParams()
-  const location = params.get('location')
+  const location = params.get('location') || 'Москва'
   return (
     <div
       onClick={searchModal.onOpen}

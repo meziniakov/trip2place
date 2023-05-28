@@ -5,6 +5,8 @@ import { useState } from 'react'
 
 import type { GeneralData } from '@/types/MKRF.type'
 
+import { categories } from './navbar/Categories'
+
 type Props = {
   item: GeneralData
 }
@@ -15,8 +17,17 @@ function cn(...classes: string[]) {
 
 const Item: FC<Props> = ({ item }) => {
   const [isLoading, setLoading] = useState(true)
+  let categoriesPath: any = []
+
+  categories.map((category) => {
+    return categoriesPath.push([category?.path, category?.value])
+  })
+
+  if (categoriesPath.length === 0) return null
+  categoriesPath = Object.fromEntries(categoriesPath)
+
   return (
-    <Link href={`/${item.category.sysName}/${item?.id}`}>
+    <Link href={`/${categoriesPath[item?.category?.sysName]}/${item?.id}`}>
       <div
         className={`${
           isLoading && 'animate-pulse'
@@ -38,17 +49,19 @@ const Item: FC<Props> = ({ item }) => {
       </div>
       <div className="pt-2">
         <div className="">
-          <p className="font-bold text-gray-900">
+          <p className="text-sm font-bold text-gray-900">
             {item?.category?.name}, {item?.locale?.name}
           </p>
         </div>
         <div className="">
-          <p className="truncate text-base text-gray-500">{item?.name}</p>
+          <p className=" text-lg">{item?.name}</p>
         </div>
         <div className="flex justify-between">
-          <div>
-            <p className="text-[16px]">{item?.organization?.name}</p>
-          </div>
+          {/* <div>
+            <p className="text-xs text-gray-700">
+              {item?.organization?.name}
+            </p>
+          </div> */}
         </div>
       </div>
     </Link>

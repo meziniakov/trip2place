@@ -31,14 +31,20 @@ export async function getAllEvents(
   currentPage: any,
   // category: string,
   locale: string | undefined = undefined,
-  limit: string = '10',
-  offset: string = 'false'
+  price: string | undefined = undefined,
+  limit: string = '10'
 ): Promise<RootObject> {
-  const f =
-    locale ??
-    JSON.stringify(`'data.general.locale.name': $search: ${locale}`)
+  const f = []
+
+  f.push(`"data.general.organizerPlace.name": {"$search": "${locale}"}`)
+  f.push(`"data.general.price":{"$eq":"${price}"}`)
+
+  // {
+  // "data.general.price":{"$eq":"500"},
+  // "data.general.organizerPlace.name":{"$search":"Саранск"}
+  // }
   return fetcher(
-    `/mincult/events/$?f=${f}&s=${currentPage}&l=${limit}&o=${offset}`
+    `/mincult/events/$?f={${f.join()}}&s=${currentPage}&l=${limit}`
   )
 }
 

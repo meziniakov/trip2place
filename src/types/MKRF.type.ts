@@ -234,6 +234,8 @@ export interface GeneralDataEvent {
   price?: number
   status: string
   start: string
+  saleLink?: string
+  needMedia?: boolean
   end: string
   tags: Tags[]
   image: Image

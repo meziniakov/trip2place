@@ -1,3 +1,5 @@
+import { formatRelative, subDays } from 'date-fns'
+import { ru } from 'date-fns/locale'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
@@ -15,8 +17,12 @@ function cn(...classes: string[]) {
 
 const ItemEvent: FC<Props> = ({ item }) => {
   const [isLoading, setLoading] = useState(true)
+
   return (
-    <Link href={`/${item.category.sysName}/${item?.id}`}>
+    <Link
+      // as={`/test/${item?.id}`}
+      href={`/events/${item.category.sysName}/${item?.id}`}
+    >
       <div
         className={`${
           isLoading && 'animate-pulse'
@@ -38,19 +44,34 @@ const ItemEvent: FC<Props> = ({ item }) => {
       </div>
       <div className="pt-2">
         <div className="">
-          <p className="font-bold text-gray-900">
+          <p className="text-sm font-bold text-gray-900">
             {item?.category?.name}, {item?.places[0]?.locale.name}
           </p>
         </div>
         <div className="">
-          <p className="truncate text-base text-gray-500">{item?.name}</p>
+          <p className="text-base">{item?.name}</p>
+        </div>
+        <div className="flex justify-between">
+          <div>
+            <p className="text-base font-light">
+              {formatRelative(
+                subDays(new Date(item?.start), 3),
+                new Date(),
+                {
+                  locale: ru,
+                }
+              )}
+            </p>
+          </div>
         </div>
         <div className="flex justify-between">
           <div>
             {item.isFree ? (
               <p className="text-[16px] font-bold">Бесплатно</p>
             ) : (
-              <p className="text-[16px] font-bold">₽{item?.price}</p>
+              <p className="text-[16px] font-bold">
+                от {item?.price} ₽ за чел.
+              </p>
             )}
           </div>
         </div>

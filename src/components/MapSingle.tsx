@@ -1,21 +1,44 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Map, Placemark, YMaps } from '@pbe/react-yandex-maps'
-import type { FC } from 'react'
 
-import type { GeneralData } from '@/types/MKRF.type'
-
-type Props = {
-  data: GeneralData
-}
-
-const MapSingle: FC<Props> = ({ data }) => {
-  const coordinates = data?.address?.mapPosition?.coordinates
+const MapSingle = ({ data }: any) => {
+  let coordinates: number[] = []
+  let coordinatesEvent: number[] = []
   let coords: number[] = []
-  if (coordinates.length > 0) {
+
+  if (data?.address?.mapPosition?.coordinates) {
+    coordinates = data?.address?.mapPosition?.coordinates
+  }
+
+  if (data?.places && data?.places?.length > 0) {
+    coordinatesEvent = data?.places[0]?.address?.mapPosition?.coordinates
+  }
+
+  if (coordinates?.length > 0) {
     coords = [
       coordinates[1] ? coordinates[1] : 55.751574,
       coordinates[0] ? coordinates[0] : 37.573856,
     ]
+  }
+
+  if (coordinatesEvent?.length > 0) {
+    coords = coordinatesEvent
+  }
+
+  let balloonContentBody
+  if (data?.price) {
+    balloonContentBody = `<div class="flex flex-col">
+      <div class="text-lg font-semibold leading-7"></div>
+      <div class="">${data.name}</div>
+      <div class="">от ${data?.price} руб.</div>
+      <div class=""><img src=${data.image.url} class="h-32" /></div>
+      </div>`
+  } else {
+    balloonContentBody = `<div class="flex flex-col">
+      <div class="text-lg font-semibold leading-7"></div>
+      <div class="">${data.name}</div>
+      <div class=""><img src=${data.image.url} class="h-32" /></div>
+      </div>`
   }
 
   return (
@@ -35,11 +58,7 @@ const MapSingle: FC<Props> = ({ data }) => {
           properties={{
             // iconContent: `${room.price}`,
             preset: 'islands#grayStretchyIcon',
-            balloonContentBody: `<div class="flex flex-col">
-<div class="text-lg font-semibold leading-7"></div>
-<div class="">${data.name}</div>
-<div class=""><img src=${data.image.url} class="h-32" /></div>
-</div>`,
+            balloonContentBody: `${balloonContentBody}`,
           }}
         />
       </Map>

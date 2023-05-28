@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/router'
 import {
   GiFilmProjector,
   GiPanFlute,
@@ -20,53 +21,64 @@ export const categories = [
   {
     label: 'Впечатления',
     value: 'enjoy',
+    path: 'enjoy',
     icon: TbBrandInstagram,
   },
   {
     label: 'События',
     value: 'events',
+    path: 'events',
     icon: MdLocalActivity,
   },
   {
     label: 'Музеи',
-    value: 'muzeums',
+    value: 'museums',
+    path: 'muzei-i-galerei',
     icon: MdMuseum,
   },
   {
     label: 'Парки',
     value: 'parks',
+    path: 'parki',
     icon: MdAttractions,
   },
   {
     label: 'Библиотеки',
     value: 'libraries',
+    path: 'biblioteki',
     icon: MdLocalLibrary,
   },
   {
     label: 'Кинотеатры',
     value: 'cinema',
+    path: 'kinoteatry',
     icon: GiFilmProjector,
   },
   {
     label: 'Театры',
     value: 'theaters',
+    path: 'teatry',
     icon: GiTheaterCurtains,
   },
   {
     label: 'Цирки',
     value: 'circuses',
+    path: 'cirki',
     icon: TbBuildingCircus,
   },
   {
     label: 'Конц. залы',
     value: 'concert_halls',
+    path: 'koncertnye-ploshchadki',
     icon: GiPanFlute,
   },
 ]
 
 const Categories = () => {
   const params = useSearchParams()
-  const categoryParams = params?.get('category')
+  const { pathname } = useRouter()
+  const categoryParams =
+    pathname === '/events' ? 'events' : params?.get('category')
 
   return (
     <Container>

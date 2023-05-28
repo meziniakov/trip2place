@@ -13,6 +13,7 @@ import type { RootData } from '@/types/MKRF.type'
 const Events = () => {
   const params = useSearchParams()
   const localeParams = params.get('location') || 'Москва'
+  const price = params.get('price') || '0'
   // let currentPage = params.get('page') || 0
 
   const [data, setData] = useState<RootData[]>([])
@@ -71,8 +72,8 @@ const Events = () => {
   }, [fetching, localeParams])
 
   useEffect(() => {
-    if (localeParams) {
-      getAllEvents(0, localeParams)
+    if (localeParams || price) {
+      getAllEvents(0, localeParams, price)
         .then((fetchData) => {
           setData([...fetchData.data])
         })
@@ -80,7 +81,7 @@ const Events = () => {
           throw new Error('Ошибка сервера')
         })
     }
-  }, [localeParams])
+  }, [localeParams, price])
 
   let emptyState = false
 
@@ -117,7 +118,7 @@ const Events = () => {
       }
     >
       <div className="sticky top-[83px] z-10 w-full bg-white shadow-sm">
-        {/* <Categories /> */}
+        <Categories />
       </div>
       <Container>
         <ItemListEvent items={data} />

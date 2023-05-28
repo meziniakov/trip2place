@@ -1,5 +1,6 @@
 // import { formatISO } from 'date-fns'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter as Router } from 'next/router'
 import qs from 'query-string'
 import { useCallback, useMemo, useState } from 'react'
 import type { Range } from 'react-date-range'
@@ -17,6 +18,7 @@ enum STEPS {
 
 const SearchModal = () => {
   const router = useRouter()
+  const { pathname } = Router()
   const params = useSearchParams()
   const searchModal = useSearchModal()
 
@@ -62,9 +64,10 @@ const SearchModal = () => {
     // if (dateRange?.endDate) {
     //   updateQuery.endDate = formatISO(dateRange?.endDate)
     // }
+
     const url = qs.stringifyUrl(
       {
-        url: '/',
+        url: pathname,
         query: updateQuery,
       },
       { skipNull: true }
