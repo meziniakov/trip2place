@@ -1,6 +1,7 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
 import { AppConfig } from '@/utils/AppConfig'
+import { GTM_ID } from '@/utils/gtm'
 
 // Need to create a custom _document because i18n support is not compatible with `next export`.
 class MyDocument extends Document {
@@ -10,6 +11,14 @@ class MyDocument extends Document {
       <Html lang={AppConfig.locale}>
         <Head />
         <body>
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
           <Main />
           <NextScript />
         </body>

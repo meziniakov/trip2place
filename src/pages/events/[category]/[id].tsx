@@ -61,7 +61,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       notFound: true,
     }
   }
-  console.log(params.id)
 
   const data: RootObject = await fetcher(
     `https://opendata.mkrf.ru/v2/events/$?f={"nativeId":{"$eq":${params?.id?.toString()}}}`
