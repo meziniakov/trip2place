@@ -7,6 +7,7 @@ module.exports = withBundleAnalyzer({
   eslint: {
     dirs: ["."],
   },
+  staticPageGenerationTimeout: 90,
   poweredByHeader: false,
   trailingSlash: true,
   images: {
