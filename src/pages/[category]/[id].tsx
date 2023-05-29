@@ -49,45 +49,45 @@ export async function getStaticPaths() {
     })
   })
 
-  const libraries: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/libraries/$?l=30'
-  )
+  // const libraries: RootObject = await fetcher(
+  //   'https://opendata.mkrf.ru/v2/libraries/$?l=30'
+  // )
 
-  libraries.data.map((item: any) => {
-    return paths.push({
-      params: { category: 'libraries', id: item.nativeId.toString() },
-    })
-  })
+  // libraries.data.map((item: any) => {
+  //   return paths.push({
+  //     params: { category: 'libraries', id: item.nativeId.toString() },
+  //   })
+  // })
 
-  const parks: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/parks/$?l=30'
-  )
+  // const parks: RootObject = await fetcher(
+  //   'https://opendata.mkrf.ru/v2/parks/$?l=30'
+  // )
 
-  parks.data.map((item: any) => {
-    return paths.push({
-      params: { category: 'parks', id: item.nativeId.toString() },
-    })
-  })
+  // parks.data.map((item: any) => {
+  //   return paths.push({
+  //     params: { category: 'parks', id: item.nativeId.toString() },
+  //   })
+  // })
 
-  const cinema: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/cinema/$?l=30'
-  )
+  // const cinema: RootObject = await fetcher(
+  //   'https://opendata.mkrf.ru/v2/cinema/$?l=30'
+  // )
 
-  cinema.data.map((item: any) => {
-    return paths.push({
-      params: { category: 'cinema', id: item.nativeId.toString() },
-    })
-  })
+  // cinema.data.map((item: any) => {
+  //   return paths.push({
+  //     params: { category: 'cinema', id: item.nativeId.toString() },
+  //   })
+  // })
 
-  const theaters: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/theaters/$?l=30'
-  )
+  // const theaters: RootObject = await fetcher(
+  //   'https://opendata.mkrf.ru/v2/theaters/$?l=30'
+  // )
 
-  theaters.data.map((item: any) => {
-    return paths.push({
-      params: { category: 'theaters', id: item.nativeId.toString() },
-    })
-  })
+  // theaters.data.map((item: any) => {
+  //   return paths.push({
+  //     params: { category: 'theaters', id: item.nativeId.toString() },
+  //   })
+  // })
 
   // const circuses: RootObject = await fetcher(
   //   'https://opendata.mkrf.ru/v2/circuses/$'
