@@ -39,12 +39,12 @@ export async function getStaticPaths() {
   const paths: object[] = []
 
   const events: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/events/$'
+    'https://opendata.mkrf.ru/v2/events/$?l=30'
   )
 
   events.data.map((item: any) => {
     return paths.push({
-      params: { category: 'events', id: item.nativeId.toString() },
+      params: { category: 'events', id: item?.nativeId?.toString() },
     })
   })
 
@@ -68,9 +68,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   return {
     props: {
-      id: params.id,
-      category: params.category,
-      data: data.data[0]?.data.general,
+      id: params?.id,
+      category: params?.category,
+      data: data?.data[0]?.data?.general,
     },
   }
 }
