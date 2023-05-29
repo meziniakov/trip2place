@@ -40,7 +40,7 @@ export async function getStaticPaths() {
   const paths: object[] = []
 
   const museums: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/museums/$'
+    'https://opendata.mkrf.ru/v2/museums/$?l=30'
   )
 
   museums.data.map((item: any) => {
@@ -50,7 +50,7 @@ export async function getStaticPaths() {
   })
 
   const libraries: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/libraries/$'
+    'https://opendata.mkrf.ru/v2/libraries/$?l=30'
   )
 
   libraries.data.map((item: any) => {
@@ -60,7 +60,7 @@ export async function getStaticPaths() {
   })
 
   const parks: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/parks/$'
+    'https://opendata.mkrf.ru/v2/parks/$?l=30'
   )
 
   parks.data.map((item: any) => {
@@ -70,7 +70,7 @@ export async function getStaticPaths() {
   })
 
   const cinema: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/cinema/$'
+    'https://opendata.mkrf.ru/v2/cinema/$?l=30'
   )
 
   cinema.data.map((item: any) => {
@@ -80,7 +80,7 @@ export async function getStaticPaths() {
   })
 
   const theaters: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/theaters/$'
+    'https://opendata.mkrf.ru/v2/theaters/$?l=30'
   )
 
   theaters.data.map((item: any) => {
@@ -89,35 +89,35 @@ export async function getStaticPaths() {
     })
   })
 
-  const circuses: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/circuses/$'
-  )
+  // const circuses: RootObject = await fetcher(
+  //   'https://opendata.mkrf.ru/v2/circuses/$'
+  // )
 
-  circuses.data.map((item: any) => {
-    return paths.push({
-      params: { category: 'circuses', id: item.nativeId.toString() },
-    })
-  })
+  // circuses.data.map((item: any) => {
+  //   return paths.push({
+  //     params: { category: 'circuses', id: item.nativeId.toString() },
+  //   })
+  // })
 
-  const philharmonic: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/philharmonic/$'
-  )
+  // const philharmonic: RootObject = await fetcher(
+  //   'https://opendata.mkrf.ru/v2/philharmonic/$?l=30'
+  // )
 
-  philharmonic.data.map((item: any) => {
-    return paths.push({
-      params: { category: 'philharmonic', id: item.nativeId.toString() },
-    })
-  })
+  // philharmonic.data.map((item: any) => {
+  //   return paths.push({
+  //     params: { category: 'philharmonic', id: item.nativeId.toString() },
+  //   })
+  // })
 
-  const concertHalls: RootObject = await fetcher(
-    'https://opendata.mkrf.ru/v2/concert_halls/$'
-  )
+  // const concertHalls: RootObject = await fetcher(
+  //   'https://opendata.mkrf.ru/v2/concert_halls/$?l=30'
+  // )
 
-  concertHalls.data.map((item: any) => {
-    return paths.push({
-      params: { category: 'concert_halls', id: item.nativeId.toString() },
-    })
-  })
+  // concertHalls.data.map((item: any) => {
+  //   return paths.push({
+  //     params: { category: 'concert_halls', id: item.nativeId.toString() },
+  //   })
+  // })
 
   return {
     paths,
