@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import ItemSingle from '@/components/ItemSingle'
 import { Meta } from '@/layouts/Meta'
@@ -36,17 +36,18 @@ const SinglePage: NextPage<SinglePageProps> = ({ data }) => {
 }
 export default SinglePage
 
-export async function getStaticPaths() {
-  const paths: object[] = []
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths: any = []
 
   const museums: RootObject = await fetcher(
     'https://opendata.mkrf.ru/v2/museums/$?l=30'
   )
 
   museums.data.map((item: any) => {
-    return paths.push({
+    paths.push({
       params: { category: 'museums', id: item.nativeId.toString() },
     })
+    return null
   })
 
   // const libraries: RootObject = await fetcher(
