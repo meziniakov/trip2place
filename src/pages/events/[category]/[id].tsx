@@ -1,4 +1,4 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import ItemSingleEvent from '@/components/ItemSingleEvent'
 import { Meta } from '@/layouts/Meta'
@@ -35,8 +35,8 @@ const SinglePage: NextPage<SinglePageProps> = ({ data }) => {
 }
 export default SinglePage
 
-export async function getStaticPaths() {
-  const paths: object[] = []
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths: any = []
 
   const events: RootObject = await fetcher(
     'https://opendata.mkrf.ru/v2/events/$?l=30'
@@ -49,7 +49,7 @@ export async function getStaticPaths() {
   })
 
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   }
 }
