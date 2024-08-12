@@ -17,7 +17,7 @@ const Logo = () => {
         className="cursor-pointer"
       />
       <Link href={'/'}>
-        <span className="text-2xl font-extrabold">Trip2place</span>
+        <span className="text-2xl font-extrabold">ViewRussia.ru</span>
       </Link>
     </div>
   )
